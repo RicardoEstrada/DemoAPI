@@ -2,16 +2,16 @@ package com.testing.wsconnector
 
 import android.content.Context
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 /*
 *  This class create and manage API connection
 * */
-class WSConnector(val context: Context) {
-    private lateinit var retrofitHelper: Retrofit
-
-    init {
-        retrofitHelper = Retrofit.Builder()
-            .baseUrl("")
+internal class WSConnector(val context: Context) {
+    internal val retrofitHelper: Retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 }

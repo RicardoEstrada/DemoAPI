@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.testing.demoapi.databinding.FragmentHomeBinding
 import com.testing.wsconnector.models.BeerData
 import kotlinx.coroutines.CoroutineScope
@@ -66,6 +67,10 @@ class HomeFragment: Fragment() {
             binding.loader.isVisible = false
             if (it.size > 0) {
                 binding.layoutEmpty.contentEmpty.isVisible = false
+                binding.recyclerList.layoutManager = LinearLayoutManager(this.context)
+                binding.recyclerList.adapter = AdapterBeer(it) {
+                    Toast.makeText(context, "${it.id}", Toast.LENGTH_SHORT).show()
+                }
             }
             else {
                 binding.layoutEmpty.contentEmpty.isVisible = true

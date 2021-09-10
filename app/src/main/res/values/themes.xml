@@ -23,4 +23,13 @@
     <style name="ThemeOverlay.DemoAPI.FullscreenContainer" parent="">
         <item name="fullscreenBackgroundColor">@android:color/white</item>
     </style>
+
+    <style name="Theme.DemoAPI.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.DemoAPI.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.DemoAPI.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

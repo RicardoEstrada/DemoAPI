@@ -6,10 +6,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class BeerRepository(var context: Context) {
+class BeerRepository() {
+    private lateinit var beersList: List<BeerData>
 
     suspend fun getBeers(onSuccess: (List<BeerData>) -> Unit, onError: (String) -> Unit) {
-        val connector: WSConnector = WSConnector(context)
+        val connector: WSConnector = WSConnector()
         val apiIntercafe = connector.retrofitHelper.create(BeerApi::class.java).getBeers()
 
         apiIntercafe.enqueue(object : Callback<List<BeerData>?> {

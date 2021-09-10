@@ -2,14 +2,13 @@ package com.testing.demoapi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.view.MotionEvent
+import android.os.Looper
 import android.view.View
 import android.view.WindowInsets
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.testing.demoapi.databinding.ActivityFullscreenBinding
 
@@ -17,7 +16,7 @@ import com.testing.demoapi.databinding.ActivityFullscreenBinding
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-class FullscreenActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFullscreenBinding
     private lateinit var fullscreenContent: ConstraintLayout
@@ -51,7 +50,6 @@ class FullscreenActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Set up the user interaction to manually show or hide the system UI.
         fullscreenContent = binding.fullscreenContent
         hide()
     }
@@ -59,11 +57,13 @@ class FullscreenActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
-        // Trigger the initial hide() shortly after the activity has been
-        // created, to briefly hint to the user that UI controls
-        // are available.
-
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }, 3000)
     }
+
+
 
     private fun hide() {
         // Hide UI first

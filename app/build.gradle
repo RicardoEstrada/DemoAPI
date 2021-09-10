@@ -63,6 +63,7 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2-native-mt'
     implementation project(path: ':wsconnector')
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

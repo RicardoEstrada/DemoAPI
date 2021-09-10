@@ -10,7 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoAPI">
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".HomeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.DemoAPI.NoActionBar" />
+        <activity
+            android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:label="@string/app_name"

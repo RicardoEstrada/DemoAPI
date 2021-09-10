@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 /*
 *  This class create and manage API connection
 * */
-internal class WSConnector(val context: Context) {
+internal class WSConnector() {
     internal val retrofitHelper: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)

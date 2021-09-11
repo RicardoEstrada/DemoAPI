@@ -1,6 +1,8 @@
 package com.testing.wsconnector
 
 import android.content.Context
+import android.util.Log
+import com.google.gson.Gson
 import com.testing.wsconnector.models.BeerData
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,11 +20,17 @@ class BeerRepository() {
                 call: Call<List<BeerData>?>,
                 response: Response<List<BeerData>?>
             ) {
-                response.body()?.let { onSuccess.invoke(it) }
+                response.body()?.let {
+                    Log.d("-- RESPONSE OK", Gson().toJson(it))
+                    onSuccess.invoke(it)
+                }
             }
 
             override fun onFailure(call: Call<List<BeerData>?>, t: Throwable) {
-                t?.message?.let { onError.invoke(it) }
+                t?.message?.let {
+                    Log.d("-- RESPONSE FAIL", t?.let {it.message} ?: "General Error")
+                    onError.invoke(it)
+                }
             }
         })
     }

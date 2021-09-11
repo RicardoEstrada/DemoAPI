@@ -13,16 +13,40 @@ class HomeViewModel: ViewModel() {
     private val repository: BeerRepository by lazy { BeerRepository() }
 
     val beers: MutableLiveData<List<BeerData>> = MutableLiveData<List<BeerData>>()
+    private var isRequest: Boolean = false
 
-    suspend fun getBeers() {
+    private var page: Int = 1
+    private var pageSize: Int = 10
+
+    init {
+        beers.value = ArrayList<BeerData>()
+    }
+
+    fun canRequest(): Boolean {
+        return !isRequest
+    }
+
+    fun wasFirstPage() = (page-1) == 1
+
+    suspend fun getNextBeers() {
+        isRequest = true
         withContext(Dispatchers.Default) {
             repository.getBeers(
+                page = page,
+                pageSize = pageSize,
                 onSuccess = {
-                    beers.postValue(it)
+                    beers.postValue(it.toList())
+                    isRequest = false
+                    page++
                 }, onError = {
+                    isRequest = false
                     Log.e("RESULT", "Error")
                 }
             )
         }
     }
+}
+
+fun <T> MutableLiveData<T>.notifyObserver() {
+    this.value = this.value
 }

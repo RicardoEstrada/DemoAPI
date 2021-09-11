@@ -8,7 +8,7 @@ import com.squareup.picasso.Picasso
 import com.testing.demoapi.databinding.ItemBeerHolderBinding
 import com.testing.wsconnector.models.BeerData
 
-class AdapterBeer(private val items: List<BeerData>, val listener: (BeerData) -> Unit): RecyclerView.Adapter<AdapterBeer.BeerViewHolder>() {
+class AdapterBeer(private val items: ArrayList<BeerData>, val listener: (BeerData) -> Unit): RecyclerView.Adapter<AdapterBeer.BeerViewHolder>() {
     override fun getItemCount(): Int = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeerViewHolder {
@@ -22,6 +22,11 @@ class AdapterBeer(private val items: List<BeerData>, val listener: (BeerData) ->
             .load(items.get(position).imageUrl)
             .into(holder.binding.imgBeer)
         holder.binding.imgBeer
+    }
+
+    fun updateList(newList: List<BeerData>) {
+        this.items.addAll(newList)
+        notifyDataSetChanged()
     }
 
     class BeerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

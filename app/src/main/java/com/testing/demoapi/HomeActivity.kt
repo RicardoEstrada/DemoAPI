@@ -19,13 +19,12 @@ class HomeActivity : AppCompatActivity() {
 
         setSupportActionBar(findViewById(R.id.toolbar))
         binding.toolbarLayout.title = title
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
+        val fragmentHome: HomeFragment = HomeFragment()
+        fragmentHome.addScrollListener(binding.contentScroll.nestedScroll)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.contentFragment, HomeFragment())
+            .add(R.id.contentFragment, fragmentHome)
             .commit()
     }
 }
